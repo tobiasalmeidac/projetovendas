@@ -2,9 +2,6 @@ using ProjetoVendas.Models;
 
 namespace ProjetoVendas.Data;
 
-/// <summary>
-/// "Banco de dados" em memória: apenas listas principais, simulando as tabelas.
-/// </summary>
 public class BancoEmMemoria
 {
     public List<Categoria> Categorias { get; } = new();

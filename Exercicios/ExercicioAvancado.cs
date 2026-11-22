@@ -8,7 +8,6 @@ public static class ExercicioAvancado
     {
         Console.WriteLine("=== Nível avançado: Curso N:N Aluno através de Matricula ===");
 
-        // Exercício 4: dados virtuais com 5 cursos e 15 alunos
         List<Curso> cursos = new()
         {
             new Curso { Id = 1, Nome = "Lógica de Programação" },
@@ -29,7 +28,6 @@ public static class ExercicioAvancado
         for (int i = 0; i < nomes.Length; i++)
             alunos.Add(new Aluno { Id = i + 1, Nome = nomes[i] });
 
-        // Cada aluno se matricula em 2 ou 3 cursos (sem repetir o mesmo curso)
         DateTime dataBase = new DateTime(2026, 2, 2);
         for (int i = 0; i < alunos.Count; i++)
         {
@@ -41,30 +39,25 @@ public static class ExercicioAvancado
                 cursos[(i + 4) % 5].Matricular(alunos[i], data);
         }
 
-        // Exercício 2 (Situacao): alteramos a situação de algumas matrículas
         alunos[1].Matriculas.First().AlterarSituacao(SituacaoMatricula.Concluida);
         alunos[2].Matriculas.First().AlterarSituacao(SituacaoMatricula.Trancada);
 
-        // Exercício 5: listar os cursos de um aluno usando a coleção de matrículas
         Aluno aluno = alunos[0];
         Console.WriteLine($"Cursos do aluno {aluno.Nome}:");
         foreach (Matricula m in aluno.Matriculas)
             Console.WriteLine($"  - {m.Curso.Nome} | Matrícula em {m.DataMatricula:dd/MM/yyyy} | Situação: {m.Situacao}");
 
-        // Exercício 6: listar os alunos de um curso
         Curso curso = cursos[0];
         Console.WriteLine($"Alunos do curso {curso.Nome}:");
         foreach (Matricula m in curso.Matriculas)
             Console.WriteLine($"  - {m.Aluno.Nome} ({m.Situacao})");
 
-        // Exercício 7: relatório de quantidade de matrículas por curso
         Console.WriteLine("Quantidade de matrículas por curso:");
         foreach (Curso c in cursos)
             Console.WriteLine($"  {c.Nome}: {c.Matriculas.Count} matrícula(s)");
 
         Console.WriteLine($"Total de matrículas: {cursos.Sum(c => c.Matriculas.Count)}");
 
-        // Exercício 8: regra que impede matrícula duplicada
         Console.WriteLine("Testando a regra de matrícula duplicada:");
         try
         {

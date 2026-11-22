@@ -7,10 +7,8 @@ public class Aluno
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
 
-    // Navegação Aluno -> Matriculas
     public IReadOnlyCollection<Matricula> Matriculas => _matriculas.AsReadOnly();
 
-    // Atalho: Aluno -> Matriculas -> Curso
     public IEnumerable<Curso> Cursos => _matriculas.Select(m => m.Curso);
 
     internal void AdicionarMatricula(Matricula matricula)

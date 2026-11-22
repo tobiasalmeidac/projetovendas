@@ -4,10 +4,6 @@ using ProjetoVendas.Services;
 
 namespace ProjetoVendas.Exercicios;
 
-/// <summary>
-/// Demonstra os exemplos dos Módulos 7 (navegação e consultas) e 8 (alterações no grafo).
-/// Usa uma NOVA carga de dados, para que as alterações não afetem o banco do menu principal.
-/// </summary>
 public static class DemonstracaoModulos7e8
 {
     public static void Executar()
@@ -49,7 +45,6 @@ public static class DemonstracaoModulos7e8
             Console.WriteLine($"  {p}");
         Console.WriteLine($"Faturamento geral: {consultas.Faturamento():C}");
 
-        // ---------------- Módulo 8: alterando o grafo ----------------
         Console.WriteLine("--- Cadastrando um novo cliente ---");
         Cliente novoCliente = new Cliente
         {
@@ -82,7 +77,6 @@ public static class DemonstracaoModulos7e8
             alvo.AlterarPreco(99.90m);
             Console.WriteLine($"{alvo.Nome}: de {precoAntigo:C} para {alvo.Preco:C}");
 
-            // Os itens de pedidos antigos mantêm o PrecoUnitario da época da compra
             ItemPedido itemAntigo = alvo.ItensPedido.First();
             Console.WriteLine($"Item do pedido {itemAntigo.Pedido.Id} continua com preço unitário de {itemAntigo.PrecoUnitario:C}");
         }

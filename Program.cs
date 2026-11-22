@@ -18,7 +18,6 @@ internal static class Program
         Console.OutputEncoding = Encoding.UTF8;
         ConfigurarCultura();
 
-        // Carga inicial com dados virtuais
         _db = DadosVirtuais.Criar();
         _consultas = new ConsultaService(_db);
         _pedidos = new PedidoService(_db);
@@ -54,9 +53,6 @@ internal static class Program
         } while (opcao != 0);
     }
 
-    // ------------------------------------------------------------------
-    // Menu
-    // ------------------------------------------------------------------
     private static void ExibirMenu()
     {
         Console.WriteLine();
@@ -75,9 +71,6 @@ internal static class Program
         Console.WriteLine("--------------------------------");
     }
 
-    // ------------------------------------------------------------------
-    // Opções 1 a 4: listagens
-    // ------------------------------------------------------------------
     private static void ListarCategorias()
     {
         Console.WriteLine("== Categorias ==");
@@ -104,7 +97,6 @@ internal static class Program
             return;
         }
 
-        // Navegação Categoria -> Produtos
         Console.WriteLine($"Categoria: {categoria.Nome}");
         foreach (Produto produto in categoria.Produtos)
             Console.WriteLine($"- {produto}");
@@ -120,9 +112,6 @@ internal static class Program
         }
     }
 
-    // ------------------------------------------------------------------
-    // Opções 5 e 6: pedidos
-    // ------------------------------------------------------------------
     private static void ConsultarPedidosPorCliente()
     {
         ListarClientes();
@@ -144,7 +133,6 @@ internal static class Program
             return;
         }
 
-        // Navegação Cliente -> Pedidos -> Itens -> Produto
         foreach (Pedido pedido in cliente.Pedidos)
         {
             Console.WriteLine();
@@ -170,7 +158,6 @@ internal static class Program
         ExibirPedido(pedido, exibirCliente: true);
     }
 
-    // Relatório no formato do item 59 do documento
     private static void ExibirPedido(Pedido pedido, bool exibirCliente)
     {
         if (exibirCliente)
@@ -190,9 +177,6 @@ internal static class Program
         Console.WriteLine($"Total do pedido: {pedido.Total:C}");
     }
 
-    // ------------------------------------------------------------------
-    // Opções 7 e 8: rankings
-    // ------------------------------------------------------------------
     private static void ExibirRankingProdutos()
     {
         Console.WriteLine("== Ranking de produtos por quantidade vendida ==");
@@ -217,9 +201,6 @@ internal static class Program
         Console.WriteLine($"Faturamento geral: {_consultas.Faturamento():C}");
     }
 
-    // ------------------------------------------------------------------
-    // Opção 9: criar pedido em memória
-    // ------------------------------------------------------------------
     private static void CriarPedido()
     {
         ListarClientes();
@@ -236,7 +217,6 @@ internal static class Program
         ListarProdutos();
         Console.WriteLine();
 
-        // Primeiro coletamos os itens; o pedido só é criado se houver pelo menos 1 item.
         List<(Produto Produto, int Quantidade)> itens = new();
 
         while (true)
@@ -278,9 +258,6 @@ internal static class Program
         ExibirPedido(pedido, exibirCliente: true);
     }
 
-    // ------------------------------------------------------------------
-    // Opção 10: exercícios propostos e demonstrações
-    // ------------------------------------------------------------------
     private static void MenuExercicios()
     {
         int opcao;
@@ -318,15 +295,11 @@ internal static class Program
         } while (opcao != 0);
     }
 
-    // ------------------------------------------------------------------
-    // Utilitários de entrada
-    // ------------------------------------------------------------------
     private static string LerTexto(string mensagem)
     {
         Console.Write(mensagem);
         string? linha = Console.ReadLine();
 
-        // Fim da entrada (por exemplo, Ctrl+Z / Ctrl+D): encerra o programa.
         if (linha is null)
             Environment.Exit(0);
 
@@ -349,7 +322,6 @@ internal static class Program
         }
         catch (CultureNotFoundException)
         {
-            // Mantém a cultura padrão do sistema.
         }
     }
 }

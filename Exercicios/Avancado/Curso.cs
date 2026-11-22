@@ -7,16 +7,10 @@ public class Curso
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
 
-    // Navegação Curso -> Matriculas
     public IReadOnlyCollection<Matricula> Matriculas => _matriculas.AsReadOnly();
 
-    // Atalho: Curso -> Matriculas -> Aluno
     public IEnumerable<Aluno> Alunos => _matriculas.Select(m => m.Aluno);
 
-    /// <summary>
-    /// Matricula o aluno no curso. Regra: a mesma pessoa não pode se matricular duas vezes no mesmo curso.
-    /// Atualiza as duas pontas da navegação (Curso e Aluno).
-    /// </summary>
     public Matricula Matricular(Aluno aluno, DateTime dataMatricula)
     {
         if (_matriculas.Any(m => m.Aluno == aluno))

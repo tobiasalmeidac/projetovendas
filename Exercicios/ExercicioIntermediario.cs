@@ -11,7 +11,6 @@ public static class ExercicioIntermediario
         ExecutarEscola();
     }
 
-    // Exercícios 1 e 2: Departamento 1:N Funcionario
     private static void ExecutarDepartamento()
     {
         Console.WriteLine("--- Departamento 1:N Funcionario ---");
@@ -23,7 +22,6 @@ public static class ExercicioIntermediario
         Funcionario f2 = new Funcionario { Id = 2, Nome = "Ricardo Alves" };
         Funcionario f3 = new Funcionario { Id = 3, Nome = "Patrícia Gomes" };
 
-        // AdicionarFuncionario atualiza as duas pontas da relação
         ti.AdicionarFuncionario(f1);
         ti.AdicionarFuncionario(f2);
         rh.AdicionarFuncionario(f3);
@@ -35,7 +33,6 @@ public static class ExercicioIntermediario
                 Console.WriteLine($"  - {f.Nome} (departamento do funcionário: {f.Departamento?.Nome})");
         }
 
-        // Transferência: o método remove do departamento antigo e adiciona no novo
         rh.AdicionarFuncionario(f2);
         Console.WriteLine($"Após transferir {f2.Nome} para {rh.Nome}:");
         Console.WriteLine($"  {ti.Nome}: {ti.Funcionarios.Count} funcionário(s)");
@@ -43,12 +40,10 @@ public static class ExercicioIntermediario
         Console.WriteLine();
     }
 
-    // Exercícios 3 a 6: Escola 1:N Turma e Turma 1:N Aluno
     private static void ExecutarEscola()
     {
         Console.WriteLine("--- Escola 1:N Turma e Turma 1:N Aluno ---");
 
-        // Exercício 4: 3 turmas e 20 alunos com dados virtuais
         Escola escola = new Escola { Id = 1, Nome = "Escola Municipal Aprender" };
 
         Turma turmaA = new Turma { Id = 1, Nome = "1º Ano A" };
@@ -74,7 +69,6 @@ public static class ExercicioIntermediario
             turmas[i % 3].AdicionarAluno(aluno);
         }
 
-        // Exercício 5: listar todas as turmas da escola e todos os alunos de uma turma
         Console.WriteLine($"Turmas da escola {escola.Nome}:");
         foreach (Turma turma in escola.Turmas)
             Console.WriteLine($"  - {turma.Nome}");
@@ -83,7 +77,6 @@ public static class ExercicioIntermediario
         foreach (Aluno aluno in turmaA.Alunos)
             Console.WriteLine($"  - {aluno.Nome}");
 
-        // Exercício 6: quantidade de alunos por turma usando LINQ
         Console.WriteLine("Quantidade de alunos por turma (LINQ):");
         var quantidadePorTurma = escola.Turmas
             .Select(t => new { Turma = t.Nome, Quantidade = t.Alunos.Count });

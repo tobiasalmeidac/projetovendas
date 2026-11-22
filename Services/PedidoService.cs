@@ -3,10 +3,6 @@ using ProjetoVendas.Models;
 
 namespace ProjetoVendas.Services;
 
-/// <summary>
-/// Serviço que coordena várias entidades (Cliente, Pedido, Produto) e o banco em memória.
-/// Regras que envolvem mais de uma entidade ficam aqui, e não dentro das entidades.
-/// </summary>
 public class PedidoService
 {
     private readonly BancoEmMemoria _db;

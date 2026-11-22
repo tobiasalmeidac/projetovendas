@@ -6,7 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>ProjetoVendas</RootNamespace>
-    <!-- Permite executar em versões mais novas do .NET (9, 10...) caso o .NET 8 não esteja instalado -->
     <RollForward>LatestMajor</RollForward>
   </PropertyGroup>
 

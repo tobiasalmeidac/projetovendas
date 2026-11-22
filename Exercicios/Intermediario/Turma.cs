@@ -1,8 +1,5 @@
 namespace ProjetoVendas.Exercicios.Intermediario;
 
-/// <summary>
-/// Turma N:1 Escola e Turma 1:N Aluno.
-/// </summary>
 public class Turma
 {
     private readonly List<Aluno> _alunos = new();

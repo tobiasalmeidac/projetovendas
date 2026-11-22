@@ -9,9 +9,6 @@ public record RankingProduto(string Produto, int Quantidade, decimal Valor);
 
 public record RankingCliente(string Cliente, int QuantidadePedidos, decimal TotalComprado);
 
-/// <summary>
-/// Consultas LINQ sobre o grafo de objetos em memória (Módulos 7 e 10).
-/// </summary>
 public class ConsultaService
 {
     private readonly BancoEmMemoria _db;
@@ -21,7 +18,6 @@ public class ConsultaService
         _db = db;
     }
 
-    // Busca por Id (se o texto for um número) ou por parte do nome, ignorando acentos e maiúsculas.
     public Categoria? BuscarCategoria(string entrada)
     {
         if (int.TryParse(entrada, out int id))
@@ -43,18 +39,15 @@ public class ConsultaService
     public Pedido? BuscarPedido(int id)
         => _db.Pedidos.FirstOrDefault(p => p.Id == id);
 
-    // Produtos acima de um valor, ordenados pelo preço
     public List<Produto> ProdutosAcimaDe(decimal valor)
         => _db.Produtos
             .Where(p => p.Preco > valor)
             .OrderBy(p => p.Preco)
             .ToList();
 
-    // Total geral vendido
     public decimal Faturamento()
         => _db.Pedidos.Sum(p => p.Total);
 
-    // Ranking de produtos por quantidade vendida (SelectMany "achata" os itens de todos os pedidos)
     public List<RankingProduto> RankingProdutos()
         => _db.Pedidos
             .SelectMany(p => p.Itens)
@@ -67,7 +60,6 @@ public class ConsultaService
             .ThenByDescending(x => x.Valor)
             .ToList();
 
-    // Ranking de clientes por valor total comprado (navega Cliente -> Pedidos -> Total)
     public List<RankingCliente> RankingClientes()
         => _db.Clientes
             .Select(c => new RankingCliente(

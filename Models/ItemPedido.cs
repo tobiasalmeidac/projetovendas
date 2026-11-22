@@ -1,9 +1,5 @@
 namespace ProjetoVendas.Models;
 
-/// <summary>
-/// Classe associativa que resolve a relação N:N entre Pedido e Produto.
-/// Possui atributos próprios do vínculo: Quantidade e PrecoUnitario.
-/// </summary>
 public class ItemPedido
 {
     public int Id { get; init; }
